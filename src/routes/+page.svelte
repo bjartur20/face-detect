@@ -1,2 +1,20 @@
+<script>
+	import { browser } from '$app/environment';
+
+	if (browser) {
+		const video = document.getElementById('webcam');
+		if (navigator.mediaDevices.getUserMedia) {
+			navigator.mediaDevices
+				.getUserMedia({ video: true })
+				.then(function (stream) {
+					video.srcObject = stream;
+				})
+				.catch(function (error) {
+					console.log('Something went wrong!');
+				});
+		}
+	}
+</script>
+
 <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<video id="webcam" autoplay></video>
